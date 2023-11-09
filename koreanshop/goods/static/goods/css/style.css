@@ -1,0 +1,38 @@
+/* body {
+    background-color: red;
+} */
+
+.container {
+    margin-top: 20px;
+}
+
+
+.head 
+{
+ text-align: center;
+}
+
+a 
+{
+    text-decoration:none; 
+}
+
+.out:hover{
+    color:white;
+}
+
+.logout{
+    color: white;
+}
+
+.link a {
+    display: block;
+}
+
+#main_screen {
+    margin: 20px;
+    width: 650ps;
+}
+
+
+    

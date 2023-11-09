@@ -1,0 +1,36 @@
+{% extends 'goods/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<h2 class="head">Твой профиль</h2>
+
+
+
+
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" class="img-fluid rounded-start" alt="Фото профиля">
+        {% else %}
+        <img src="{% static 'goods/images/default.png' %}" class="img-fluid rounded-start" alt="Фото профиля">
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="card-text">{{ profile.phone }}</p>
+          <p class="card-text"><small class="text-body-secondary">Некая информация</small></p>
+          <button  class="btn btn-outline-primary"><a href="{% url 'edit_profile' id=profile.id  %}" class="out">Изменить профиль</a></button>
+          <button  class="btn btn-primary"><a href="{% url 'logout' %}" class="logout" >Выйти</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button  class="btn btn-primary"><a href="{% url 'edit' %}" style="color: white;">Настройки</a></button>
+
+{% endblock %}   

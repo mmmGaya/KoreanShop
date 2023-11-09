@@ -1,0 +1,40 @@
+{% extends 'goods/base.html' %}
+
+
+{% block content %}
+
+<h1 style="text-align: center; margin-bottom: 20px;">Твоя корзина</h1>
+
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Общая цена</th>
+        <th scope="col">Заказать</th>
+        <th scope="col">Удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for b in basket %}  
+      <tr class="table-light">
+        <td><img src="{{ b.good.photo.url }}" width="50"></td>
+        <th scope="row"><a href="{{b.good.get_absolute_url}}">{{ b.good }}</a></th>
+        <td>{{ b.quantity }}</td>
+        <td>{{ b.total_price }}</td>
+        <td><button type="submit" class="btn btn-primary">Купить</button></td>
+        <td><button type="button" class="btn btn-outline-primary"><a href="{% url 'remove_basket' good_id=b.good.id %}">Удалить</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+{% endblock %}   

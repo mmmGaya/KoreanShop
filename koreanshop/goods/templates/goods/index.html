@@ -1,0 +1,50 @@
+{% extends 'goods/base.html' %}
+{% load static%}
+{% block content %}
+
+
+
+
+      
+
+
+<!-- First card  -->
+<div id="main_screen" class="row row-cols-1 row-cols-md-5 g-4">
+  {% for g in goods %}
+  <div class="col">
+    <div class="card">
+      <img src="{{ g.photo.url }}" class="card-img-top" alt="{{ g.name }}" width="300" height="200" >
+      <div class="card-body">
+        <h5 class="card-title"><a href="{{ g.get_absolute_url }}">{{ g.name }}</a></h5>
+        <p class="card-text">{{ g.content }}</p>
+        <form action='{% url "add" id=g.id %}' method="POST">
+          {% csrf_token %}
+          <p><input type="image" src="{% static 'goods/images/heart.png' %}" alt="ОК" width="30px"></p>
+        </form>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <form action='{% url "add_basket" good_id=g.id %}' method="POST">
+            {% csrf_token %}
+            <button id="form" type="submit" class="btn btn-primary">Корзина</button>
+            <p style="display: inline;">{{ basket }}</p>
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %} 
+
+
+
+  
+</div>
+
+
+
+
+
+ 
+
+
+
+{% endblock %}

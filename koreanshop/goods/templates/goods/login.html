@@ -1,0 +1,13 @@
+{% extends 'goods/base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {% for f in form %}
+    <p>{{ f }}</p>
+    <p>{{ f.label }}</p>
+    {% endfor %}
+    <button type="submit">Войти</button>
+    <p><a href="{% url 'register' %}">Зарегестрироваться</a></p>
+</form>
+{% endblock %}    

@@ -1,0 +1,38 @@
+{% extends 'goods/base.html' %}
+{% block content %}
+
+<!-- border-light -->
+
+<!-- <div class="card  mb-2"  style="max-width: 1000px;">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img src="{{ goods.photo.url }}" class="img-fluid rounded-start" alt="Фото товара">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h2 class="card-title">{{ goods.name }}</h2>
+          <h5 class="card-title">{{ goods.cost }}</h5>
+          <p class="card-text">{{ goods.content }}</p>
+          <p class="card-text"><small class="text-body-secondary">{{ goods.cost }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="{{ goods.photo.url }}" class="img-fluid rounded-start" alt="Фото товара">
+        </div>
+        <div class="col">
+            <div class="card-body">
+            <h2 class="card-title">{{ goods.name }}</h2>
+            <h5 class="card-title">{{ goods.cost }}</h5>
+            <p class="card-text">{{ goods.content }}</p>
+            <p class="card-text"><small class="text-body-secondary">{{ goods.cost }}</small></p>
+          </div></div>
+    </div>
+  </div>
+
+{% endblock %}

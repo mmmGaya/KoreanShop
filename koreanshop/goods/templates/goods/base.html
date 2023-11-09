@@ -1,0 +1,69 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'goods/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'goods/css/style.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    
+
+      <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Korean Shop</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              {% for m in menu %}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url m.url_name %}">{{m.title}}</a>
+              </li>
+              {% endfor %}
+              {% if request.user.is_authenticated %}  
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ user.profile.get_absolute_url }}">Профиль</a>
+              </li> 
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Войти</a>
+              </li> 
+              {% endif %}
+            </ul> 
+          </div>
+        </div>
+      </nav>
+
+    
+ <!-- Navs  -->
+ <ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item" role="presentation">
+  {% if cat_selected == 0  %}
+  <a class="nav-link active" data-bs-toggle="tab" href="{% url 'home' %}" aria-selected="true" role="tab">ВСЯ НАША ПРОДУКЦИЯ</a>
+  {% else %}
+  <a class="nav-link" data-bs-toggle="tab" href="{% url 'home' %}" aria-selected="true" role="tab">ВСЯ НАША ПРОДУКЦИЯ</a>
+  {% endif %}
+  </li>
+
+  {% for c in cats %}
+  <li class="nav-item" role="presentation"></li>
+  {% if c.pk == cat_selected %}
+    <a class="nav-link active" data-bs-toggle="tab" href="{{c.get_absolute_url}}" aria-selected="true" role="tab">{{c.name}}</a>    
+  {% else %}  
+    <a class="nav-link" data-bs-toggle="tab" href="{{c.get_absolute_url}}" aria-selected="true" role="tab">{{c.name}}</a>    
+  {% endif %}
+</li>
+  {% endfor %}
+</ul>
+
+    {% block content %}
+    {% endblock %}
+
+    
+</body>
+</html>
